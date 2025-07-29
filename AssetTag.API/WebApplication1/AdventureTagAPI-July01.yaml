@@ -1,0 +1,269 @@
+openapi: 3.0.0
+servers:
+  # Added by API Auto Mocking Plugin
+  # Added by API Auto Mocking Plugin
+  #- description: SwaggerHub API Auto Mocking
+  #  url: https://virtserver.swaggerhub.com/ForEveryIdeaLLC/ForAdventurePortal/1.0.0
+  - description: SwaggerHub API Auto Mocking
+    url: http://localhost:5034
+info:
+  description: API for managing AssetTags, EmergencyContacts, and TripPlans
+  version: "1.0.1"
+  title: ForAdventure AssetTag API
+  contact:
+    email: tony@foreveryidea.com
+#  license:
+#    name: Apache 2.0
+#    url: 'http://www.apache.org/licenses/LICENSE-2.0.html'
+tags:
+  - name: Mobile
+    description: These endpoint are for the AdventureApp
+  - name: 4eiMVP
+    description: Minimally Viable Solution
+  - name: 4eiBoneyard
+    description: Other Capabilities
+paths:
+  /mobile/{assetTagID}/IndicateTripType/{TripRoutePreference}:
+    post:
+      summary: Indicate if trip is a circuit or a section
+      tags:
+        - Mobile
+      #operationID: buildTripType
+      description: This indicates what type of trip is being planned
+      parameters:
+        - name: assetTagID
+          in: path
+          description: member's asset tag id
+          example: placeholderIdentifier
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: string
+        - name: TripRoutePreference
+          in: path
+          description: user indicated excursion route
+          required: true
+          schema:
+            type: string
+            enum: 
+              - 01Circuit Route 
+              - 02Section Route
+      responses:
+        '200':
+          description: You have indicated what type of trip you are planning
+          content:
+            aplication/json:
+              schema:
+                $ref: '#/components/schemas/TripPlan'
+  /mobile/{assetTagID}/IndicateTripLocation/{LandmarkType}/{LandmarkLocation}:
+    post:
+      summary: This describes the location of a landmark. Namely a begining/ending landmark
+      tags:
+        - Mobile
+      description: A trip can have a begining and an ending landmark location similar to those defined in this float plan https://www.foreveryidea.com/float-plans/category/dmv
+      parameters:
+        - name: assetTagID
+          in: path
+          description: member's asset tag id
+          example: placeholderIdentifier
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: string
+        - name: LandmarkType
+          in: path
+          description: user indicated excursion landmark type
+          required: true
+          schema:
+            type: string
+            enum: 
+              - 00LocationStart 
+              - 01LocationEnd
+              - 10FeatureLocation01
+        - name: LandmarkLocation
+          in: path
+          description: Coordinates of a Landmark
+          required: true
+          schema:
+            type: string
+            example: 39°00'06.3"N 77°14'50.4"W
+      responses:
+        '200':
+          description: You have indicated what type of trip you are planning
+          content:
+            aplication/json:
+              schema:
+                $ref: '#/components/schemas/TripPlan'
+  /api/AddPlanLogistics:
+    post:
+      summary: Make Trip Plan
+      tags:
+        - 4eiMVP
+      operationId: updateTripPlan
+      description: This supplies the ForEveryIdea trip information data store with key details about your excursion plans. 
+      responses:
+        '200':
+          description: Trip Logistics updated
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+                $ref: '#/components/schemas/TripPlan'
+        description: Trip Plan Inputs
+  /api/MakeAssetTag:
+    post:
+      summary: Create a New Asset Tag
+      tags:
+        - 4eiMVP
+      operationId: createTripPlan
+      description: Adds an item to the system
+      responses:
+        '200':
+          description: AssetTag Created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AssetTag'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: string
+              format: uuid
+              example: b3b8a7e2-8c2e-4e2a-9c2e-8c2e4e2a9c2e
+        description: information to print vendor
+  /api/ShareAssetTag/{tagCode}:
+    get:
+      summary: Get AssetTag by tagCode
+      tags:
+        - 4eiMVP
+      parameters:
+        - name: tagCode
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: AssetTag found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AssetTag'
+        '404':
+          description: AssetTag not found
+  /api/Emergency/{tagCode}/alert:
+    post:
+      summary: Send alert to emergency contacts for AssetTag
+      tags:
+        - 4eiMVP
+      parameters:
+        - name: tagCode
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Alert sent
+          content:
+            application/json:
+              schema:
+                type: string
+        '404':
+          description: AssetTag not found
+components:
+  schemas:
+    AssetTag:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        tagCode:
+          type: string
+        userId:
+          type: string
+          format: uuid
+        emergencyContacts:
+          type: array
+          items:
+            $ref: '#/components/schemas/EmergencyContact'
+        tripPlans:
+          type: array
+          items:
+            $ref: '#/components/schemas/TripPlan'
+    EmergencyContact:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        name:
+          type: string
+        phone:
+          type: string
+        email:
+          type: string
+    LocationCoordinates:
+      type: object
+      properties:
+        LocationIdentifier:
+          type: string
+          format: uuid
+        LocationName:
+          type: string
+        LocationGPSformat01:
+          type: string
+        LocationGPSformat02:
+          type: string
+        LocationWhatThreeWords:
+          type: string
+        LocationAppleMap:
+          type: string
+        LocationGoogleMap:
+          type: string
+        LocationAddressCriteria:
+          type: string
+    TripPlan:
+      type: object
+      properties:
+        TripIdentifier:
+          #Description: placeholder
+          type: string
+          format: uuid
+        TripRoutePreference:
+          type: string
+          example: 
+            - 01Circuit Route
+            - 02Section Route
+        TripRoute:
+          type: string
+          example: TRUE
+        TripStartDate:
+          type: string
+          format: date-time
+          example: 9-30-2025
+        TripEndDate:
+          type: string
+          format: date-time
+          example: 10-31-2025
+        TripDurationDays:
+          type: integer
+          example: 31
+        TripLocationStart:
+          type: array
+          items:
+            $ref: '#/components/schemas/LocationCoordinates'
+        TripLocationEnd:
+          type: array
+          items:
+            $ref: '#/components/schemas/LocationCoordinates'            
+        TripFeaturedLocation:
+          type: array
+          items:
+            $ref: '#/components/schemas/LocationCoordinates'            
