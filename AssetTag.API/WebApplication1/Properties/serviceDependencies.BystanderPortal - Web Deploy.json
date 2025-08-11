@@ -1,0 +1,8 @@
+{
+  "dependencies": {
+    "apis1": {
+      "resourceId": "/subscriptions/[parameters('subscriptionId')]/resourceGroups/[parameters('resourceGroupName')]/providers/Microsoft.ApiManagement/service/BystanderPortal-apim/apis/foradventure-assettag-api",
+      "type": "apis.azure"
+    }
+  }
+}
