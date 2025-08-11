@@ -1,0 +1,217 @@
+{
+	"info": {
+		"_postman_id": "62074f7d-e2be-409f-9f76-a259de2921ba",
+		"name": "ForAdventure AssetTag API",
+		"description": "Test collection for AssetTagController endpoints\n\nCallout 01 Local Information\n\n- BaseURL: [http://localhost:5034/api/](http://localhost:5034/api/)\n    \n- Port: 5034\n    \n\nCallout 02 Endpoint Header\n\n- Content-Type: application/json\n    \n\nStartFragment1. {baseurl}/MakeAssetTag  \n2\\. {baseurl}/AddPlanLogisticsEndFragment",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "24418743"
+	},
+	"item": [
+		{
+			"name": "MakeAssetTag-MVP",
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {
+					"content-type": true
+				}
+			},
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "\"b3b8a7e2-8c2e-4e2a-9c2e-8c2e4e2a9c2e\""
+				},
+				"url": {
+					"raw": "http://localhost:5034/api/AssetTag/api/MakeAssetTag",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5034",
+					"path": [
+						"api",
+						"AssetTag",
+						"api",
+						"MakeAssetTag"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "MakeAssetTag-MVP Clean",
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {
+					"content-type": true
+				}
+			},
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n        \"tagCode\": \"TAG123\",\r\n        \"userId\": \"00000000-0000-0000-0000-000000000001\",\r\n        \"emergencyContacts\": [],\r\n        \"tripPlans\": []\r\n      }"
+				},
+				"url": {
+					"raw": "https://localhost:7298/api/AssetTag/MakeAssetTag",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "7298",
+					"path": [
+						"api",
+						"AssetTag",
+						"MakeAssetTag"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "AddPlanLogistics-DELETE",
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {
+					"content-type": true
+				}
+			},
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"TripIdentifier\": \"3fa85f64-5717-4562-b3fc-2c963f66afa6\",\r\n  \"TripRoutePreference\": \"02Section Route\",\r\n  \"TripRoute\": true,\r\n  \"TripStartDate\": \"9-30-2025\",\r\n  \"TripEndDate\": \"10-31-2025\",\r\n  \"TripDurationDays\": 31,\r\n  \"TripLocationStart\": [\r\n    {\r\n      \"LocationIdentifier\": \"3fa85f64-5717-4562-b3fc-2c963f66afa6\",\r\n      \"LocationName\": \"string\",\r\n      \"LocationGPSformat01\": \"string\",\r\n      \"LocationGPSformat02\": \"string\",\r\n      \"LocationWhatThreeWords\": \"string\",\r\n      \"LocationAppleMap\": \"string\",\r\n      \"LocationGoogleMap\": \"string\",\r\n      \"LocationAddressCriteria\": \"string\"\r\n    }\r\n  ],\r\n  \"TripLocationEnd\": [\r\n    {\r\n      \"LocationIdentifier\": \"3fa85f64-5717-4562-b3fc-2c963f66afa6\",\r\n      \"LocationName\": \"notionalPlan\",\r\n      \"LocationGPSformat01\": \"38.4829367,-78.3160611\",\r\n      \"LocationGPSformat02\": \"38.48437° N, 78.31214° W\",\r\n      \"LocationWhatThreeWords\": \"https://w3w.co/dating.reader.pigeons\",\r\n      \"LocationAppleMap\": \"https://maps.apple/p/rSX4Zk4y1EAZ33\",\r\n      \"LocationGoogleMap\": \"https://maps.app.goo.gl/3RHPkULAPG7TAKz27\",\r\n      \"LocationAddressCriteria\": \"748 Bohannon Rd, Syria, VA 22743\"\r\n    }\r\n  ],\r\n  \"TripFeaturedLocation\": [\r\n    {\r\n      \"LocationIdentifier\": \"3fa85f64-5717-4562-b3fc-2c963f66afa6\",\r\n      \"LocationName\": \"string\",\r\n      \"LocationGPSformat01\": \"string\",\r\n      \"LocationGPSformat02\": \"string\",\r\n      \"LocationWhatThreeWords\": \"string\",\r\n      \"LocationAppleMap\": \"string\",\r\n      \"LocationGoogleMap\": \"string\",\r\n      \"LocationAddressCriteria\": \"string\"\r\n    }\r\n  ]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5034/api/AddPlanLogistics",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5034",
+					"path": [
+						"api",
+						"AddPlanLogistics"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "AddPlanLogistics-KEEP",
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {
+					"content-type": true
+				}
+			},
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"TripIdentifier\": \"3fa85f64-5717-4562-b3fc-2c963f66afa6\",\r\n  \"TripRoutePreference\": \"02Section Route\",\r\n  \"TripRoute\": true,\r\n  \"TripStartDate\": \"9-30-2025\",\r\n  \"TripEndDate\": \"10-31-2025\",\r\n  \"TripDurationDays\": 31,\r\n  \"TripLocationStart\": [\r\n    {\r\n      \"LocationIdentifier\": \"3fa85f64-5717-4562-b3fc-2c963f66afa6\",\r\n      \"LocationName\": \"string\",\r\n      \"LocationGPSformat01\": \"string\",\r\n      \"LocationGPSformat02\": \"string\",\r\n      \"LocationWhatThreeWords\": \"string\",\r\n      \"LocationAppleMap\": \"string\",\r\n      \"LocationGoogleMap\": \"string\",\r\n      \"LocationAddressCriteria\": \"string\"\r\n    }\r\n  ],\r\n  \"TripLocationEnd\": [\r\n    {\r\n      \"LocationIdentifier\": \"3fa85f64-5717-4562-b3fc-2c963f66afa6\",\r\n      \"LocationName\": \"notionalPlan\",\r\n      \"LocationGPSformat01\": \"38.4829367,-78.3160611\",\r\n      \"LocationGPSformat02\": \"38.48437° N, 78.31214° W\",\r\n      \"LocationWhatThreeWords\": \"https://w3w.co/dating.reader.pigeons\",\r\n      \"LocationAppleMap\": \"https://maps.apple/p/rSX4Zk4y1EAZ33\",\r\n      \"LocationGoogleMap\": \"https://maps.app.goo.gl/3RHPkULAPG7TAKz27\",\r\n      \"LocationAddressCriteria\": \"748 Bohannon Rd, Syria, VA 22743\"\r\n    }\r\n  ],\r\n  \"TripFeaturedLocation\": [\r\n    {\r\n      \"LocationIdentifier\": \"3fa85f64-5717-4562-b3fc-2c963f66afa6\",\r\n      \"LocationName\": \"string\",\r\n      \"LocationGPSformat01\": \"string\",\r\n      \"LocationGPSformat02\": \"string\",\r\n      \"LocationWhatThreeWords\": \"string\",\r\n      \"LocationAppleMap\": \"string\",\r\n      \"LocationGoogleMap\": \"string\",\r\n      \"LocationAddressCriteria\": \"string\"\r\n    }\r\n  ]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5034/api/AddPlanLogistics",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5034",
+					"path": [
+						"api",
+						"AddPlanLogistics"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get AssetTag",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5034/api/AssetTag/{{tagCode}}",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5034",
+					"path": [
+						"api",
+						"AssetTag",
+						"{{tagCode}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Send Alert",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5034/api/AssetTag/{{tagCode}}/alert",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5034",
+					"path": [
+						"api",
+						"AssetTag",
+						"{{tagCode}}",
+						"alert"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "New Request",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		}
+	],
+	"variable": [
+		{
+			"key": "tagCode",
+			"value": "\"b3b8a7e2-8c2e-4e2a-9c2e-8c2e4e2a9c2e\""
+		}
+	]
+}
